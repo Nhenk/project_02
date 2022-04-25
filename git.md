@@ -850,7 +850,11 @@ SSH key 由**两部分组成**，分别是：
 
 打开 Git Bash，输入如下的命令并回车执行：
 
-![](note images/00059.png)
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251621315.png)
+
+
+
+
 
 ## Git 分支
 
@@ -858,9 +862,257 @@ SSH key 由**两部分组成**，分别是：
 
 
 
+### 1. 本地分支操作
 
 
 
 
 
+#### ① 分支的概念
+
+分支就是科幻电影里面的**平行宇宙**，当你正在电脑前努力学习Git的时
+
+候，另一个你正在另一个平行宇宙里努力学习SVN。
+
+如果两个平行宇宙互不干扰，那对现在的你也没啥影响。
+
+不过，**在某个时间点，两个平行宇宙合并了**，结果，你既学会了Git又
+
+学会了SVN！
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251627740.png)
+
+
+
+
+
+
+
+#### ② 分支在实际开发中的作用
+
+在进行多人协作开发的时候，为了防止互相干扰，提高协同开发的体验，建议每个开发者都基于分支进行项目功能的开发，例如：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251628089.png)
+
+
+
+
+
+#### ③  master 主分支
+
+在初始化本地 Git 仓库的时候，Git 默认已经帮我们创建了一个名字叫
+
+做 master 的分支。通常我们把这个 master 分支叫做主分支。
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251631061.png)
+
+在实际工作中，master 主分支的作用是：用来保存和记录整个项目已
+
+完成的功能代码。
+
+因此，不允许程序员直接在 master 分支上修改代码，因为这样做的风
+
+险太高，容易导致整个项目崩溃
+
+
+
+
+
+
+
+#### ④ 功能分支
+
+由于程序员不能直接在 master 分支上进行功能的开发，所以就有了功
+
+能分支的概念。
+
+功能分支指的是专门用来开发新功能的分支，它是临时从 master 主分
+
+支上分叉出来的，当新功能开发且测试完毕后，最终需要合并到 
+
+master 主分支上，如图所示：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251635729.png)
+
+
+
+
+
+
+
+#### ⑤ 查看分支列表
+
+使用如下的命令，可以查看当前 Git  仓库中所有的分支列表：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251636781.png)
+
+运行的结果如下所示：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251636963.png)
+
+注意：分支名字前面的 * 号表示当前所处的分支。
+
+
+
+
+
+
+
+#### ⑥ 创建新分支
+
+使用如下的命令，可以**基于当前分支**，**创建一个新的分支**，此时，新分支中的代码和当前分支完全一样：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251946228.png)
+
+图示如下：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251947055.png)
+
+
+
+
+
+
+
+#### ⑦ 切换分支
+
+使用如下的命令，可以切换到指定的分支上进行开发：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251947361.png)
+
+图示如下 ：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251948985.png)
+
+
+
+
+
+
+
+#### ⑧ 分支的快速创建和切换
+
+使用如下的命令，可以创建指定名称的新分支，并立即切换到新分支上：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251948319.png)
+
+图示如下：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251949168.png)
+
+注意：
+"git checkout -b 分支名称" 是下面两条命令的简写形式：
+git branch 分支名称
+git checkout 分支名称
+
+
+
+
+
+#### ⑨ 合并分支
+
+功能分支的代码开发测试完毕之后，可以使用如下的命令，将完成后的代码合并到 master 主分支上：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251953393.png)
+
+图示如下：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251953353.png)
+
+合并分支时的注意点：
+假设要把 C 分支的代码合并到 A 分支，则必须先切换到 A 分支上，再运行 git merge 命令，来合并 C 分支！
+
+
+
+
+
+
+
+#### ⑨ 删除分支
+
+当把功能分支的代码合并到 master 主分支上以后，就可以使用如下的命令，删除对应的功能分支：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251954906.png)
+
+图示如下：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251955400.png)
+
+
+
+
+
+
+
+#### ⑩ 遇到冲突时的分支合并
+
+如果在两个不同的分支中，对同一个文件进行了不同的修改，Git 就没法干净的合并它们。 此时，我们需要打开这些包含冲突的文件然后手动解决冲突。
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251955959.png)
+
+
+
+
+
+
+
+### 2. 远程分支操作
+
+
+
+
+
+#### ① 将本地分支推送到远程仓库
+
+如果是第一次将本地分支推送到远程仓库，需要运行如下的命令：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251956889.png)
+
+注意：第一次推送分支需要带 -u 参数，此后可以直接使用 git push 推送代码到远程分支。
+
+
+
+
+
+#### ② 查看远程仓库中所有的分支列表
+
+通过如下的命令，可以查看远程仓库中，所有的分支列表的信息：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251957711.png)
+
+
+
+
+
+
+
+#### ③ 跟踪分支
+
+跟踪分支指的是：从远程仓库中，把远程分支下载到本地仓库中。需要运行的命令如下：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251957976.png)
+
+
+
+
+
+
+
+#### ④ 拉取远程分支的最新的代码
+
+可以使用如下的命令，把远程分支最新的代码下载到本地对应的分支中：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251958779.png)
+
+
+
+
+
+
+
+#### ⑤ 删除远程分支
+
+可以使用如下的命令，删除远程仓库中指定的分支：
+
+![](https://cdn.jsdelivr.net/gh/Nhenk/Nhenk-repository/202204251959985.png)
 
